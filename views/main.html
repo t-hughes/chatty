@@ -1,14 +1,33 @@
 <div class="header">
-  <h3 class="text-muted">chatty</h3>
+  <h3 class="text-muted">Catty Chatty</h3>
 </div>
 
-<h4>Latest Chats:</h4>
+<h4 class="chat-header">Catty Chatties</h4>
 <div class="jumbotron">
 
-	<form ng-submit="addMessage(newMessage)">
-		<input ng-model="newMessage" type="text" placeholder="Hello!">
+<form ng-submit="addMessage(newMessage, username)">
+  <div class="row">
+
+    <div class="col-xs-4 ">
+  <input ng-model="username" class="form-control" type="text" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+
+</div>
+
+  <div class="col-xs-4">
+		<input ng-model="newMessage" class="form-control" type="text" placeholder="Hello!" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hello!'">
+</div>
+<div class="col-xs-4">
+    <button class="snip1535">Submit</button>
+</div>
+  </div>
 	</form>
 
-	<div ng-repeat="message in messages track by $index">{{ message }}</div>
+  <div class="error-message" ng-show="errorMessage"> {{errorMessage}} </div>
 
+  <div class="text-align" ng-repeat="message in messages track by $index">
+    <strong class="username">{{message.username}}&ensp;</strong>
+    <span class="message-time">{{message.time | date:'h:mm a'}}</span>
+    <br>
+    {{message.message}}
+  </div>
 </div>
